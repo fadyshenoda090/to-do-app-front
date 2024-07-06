@@ -31,7 +31,6 @@ const Home = () => {
             setInProgress(res.data.filter(todo => todo?.status === 'in progress'));
             setDone(res.data.filter(todo => todo?.status === 'done'));
         } catch (err) {
-            console.log(err);
             swal.fire({
                 title: 'Error',
                 text: err.response.data.error,
