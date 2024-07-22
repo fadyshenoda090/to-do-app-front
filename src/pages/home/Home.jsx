@@ -23,9 +23,9 @@ const Home = () => {
     const fetchAllTodos = async () => {
         try {
             const res = await axiosInstance.get(`/users/${token}/todos`, {
-                    headers:{
-                        token: token
-                    }
+                headers: {
+                    token: token
+                }
             });
             setTodos(res.data.filter(todo => todo?.status === 'to-do'));
             setInProgress(res.data.filter(todo => todo?.status === 'in progress'));
@@ -52,6 +52,7 @@ const Home = () => {
                 title: 'Success',
                 text: 'Task deleted successfully',
             });
+            fetchAllTodos(); // Fetch todos after deletion
         } catch (err) {
             swal.fire({
                 icon: 'error',
@@ -63,7 +64,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchAllTodos();
-    }, [showModal,deleteTodo]);
+    }, [showModal]);
 
     return (
         <section className="pt-28 px-4 animation h-screen flex flex-col">
